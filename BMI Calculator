@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BMI Calculator</title>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<style>
+:root {
+  --bs-body-bg: #000000; /* 主背景 */
+  --bs-body-color: #fffefe; /* 主要文字 */
+  --bs-primary: #ff8400; /* 區塊一 */
+  --bs-secondary: #faa447; /* 區塊二 / navbar */
+  --bs-tertiary: #ffbe79; /* 區塊三 */
+  --bs-quaternary: #cce0ff; /* 其他輔助顏色 */
+}
+
+/* Body 主題色 */
+body {
+  background-color: var(--bs-body-bg);
+  color: var(--bs-body-color);
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+/* Navbar */
+.navbar {
+  background-color: var(--bs-primary);
+}
+
+.navbar .navbar-brand,
+.navbar .nav-link {
+  color: #ffffff; /* 文字白色更清楚 */
+}
+
+.navbar-nav {
+  flex-direction: row !important;
+}
+
+.navbar-brand {
+  margin-left: 1rem;
+}
+
+.nav-link {
+  margin-right: 1rem;
+}
+
+/* 區塊顏色 */
+.bg-primary-custom {
+  background-color: var(--bs-primary);
+}
+
+.bg-secondary-custom {
+  background-color: var(--bs-secondary);
+  color: #ffffff;
+}
+
+.bg-tertiary-custom {
+  background-color: var(--bs-tertiary);
+  color: #ffffff;
+}
+
+.bg-quaternary-custom {
+  background-color: var(--bs-quaternary);
+}
+</style>
+
+    <script>
+    $(function () {
+    $('#ate').click(function () {
+       
+        var h = parseFloat($('#HEIGHT').val());
+        var w = parseFloat($('#WEIGHT').val());
+
+        if (!h || !w) {
+        alert('請輸入身高與體重');
+        return;
+        }
+
+        var bmi = w / (h * h);
+        $('#RESULT').val(bmi.toFixed(2));
+    });
+    });
+    </script>
+
+
+</head>
+
+<body>
+
+<div class="container-fluid px-0">
+  <nav class="navbar px-0">
+    <a class="navbar-brand" href="#">BMI Calculator</a>
+    <ul class="navbar-nav ms-auto mb-0">
+      <li class="nav-item">
+        <a class="nav-link" href="#">ABOUT</a>
+      </li>
+    </ul>
+  </nav>
+</div>
+
+<div class="container mt-5 bg-tertiary-custom p-5 rounded">
+  <p>BMI Calculator for REAL Baddies</p>
+</div>
+
+<div class="container mt-5 ">
+  <div class="row">
+    
+    <div class="col-md-3 me-3 bg-primary-custom p-3 rounded">
+        <form>
+        <div class="mb-3">
+        <label for="HEIGHT" class="form-label">HEIGHT (m)</label>
+        <input type="text" inputmode="numeric" pattern="[0-9]*" id="HEIGHT" class="form-control custom-input" step="0.01">
+        </div>
+        </form>
+            <style>
+            /* 表單輸入框 */
+            .custom-input {
+            border: 2px solid var(--bs-primary); /* 邊框顏色套用主題色 */
+            padding: 0.5rem 0.75rem; /* 調整內距 */
+            border-radius: 0.375rem; /* 圓角 */
+            background-color: #ffffff;
+            color: var(--bs-body-color);
+            }
+            .custom-input:focus {
+            border-color: var(--bs-secondary); /* focus 顏色 */
+            }
+            </style>
+    </div>
+
+
+    <div class="col-md-3 me-3 bg-primary-custom p-3 rounded">
+        <form>
+        <div class="mb-3">
+        <label for="WEIGHT" class="form-label">WEIGHT (kg)</label>
+        <input type="text" inputmode="numeric" pattern="[0-9]*" id="WEIGHT" class="form-control custom-input">
+        </div>
+        </form>
+            <style>
+            /* 表單輸入框 */
+            .custom-input {
+            border: 2px solid var(--bs-primary); /* 邊框顏色套用主題色 */
+            padding: 0.5rem 0.75rem; /* 調整內距 */
+            border-radius: 0.375rem; /* 圓角 */
+            background-color: #ffffff;
+            color: var(--bs-body-color);
+            }
+            .custom-input:focus {
+            border-color: var(--bs-secondary); /* focus 顏色 */
+            }
+            </style>
+    </div>
+
+    <div class="col-md-2 bg-tertiary-custom me-3 p-3 rounded"> 
+        <button type="button" id="ate" class="btn custom-btn w-100">Submit</button>
+                <style>
+                /* 按鈕 */
+                .custom-btn {
+                background-color: var(--bs-secondary); /* 按鈕背景色 */
+                color: #ffffff; /* 按鈕文字色 */
+                border: 2px solid var(--bs-primary); /* 邊框 */
+                padding: 0.5rem 1rem; /* 調整 padding */
+                border-radius: 0.375rem; /* 圓角 */
+                transition: background-color 0.2s, border-color 0.2s;
+                }
+                .custom-btn:hover {
+                background-color: var(--bs-tertiary); /* 滑鼠 hover 背景 */
+                border-color: var(--bs-secondary);
+                color: #ffffff;
+                }
+                </style>
+    </div>
+
+    <div class="col-md-3 bg-tertiary-custom p-3 rounded">
+        <div class="mb-3">
+        <label for="RESULT" >RESULT</label>
+        <input type="result" class="form-control" id="RESULT" readonly="true">
+        </div>
+        
+    </div>
+
+
+  </div>
+</div>
+
+</body>
+</html>

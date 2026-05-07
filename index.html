@@ -11,25 +11,152 @@
 <body>
   <!-- 左側固定導航 -->
   <nav class="side-nav">
-    <a href="#section1" class="nav-item active">
-      <span>Introduction 我是誰</span>
+    <a href="#section1" class="nav-item">
+      <span class="btn-icon">
+        <img src="images/intro.svg" alt="">
+      </span>
+      <span class="text">Introduction 我是誰&emsp;&emsp;</span>
     </a>
     <a href="#section2" class="nav-item">
-      <span>Experience 歷程</span>
+      <span class="btn-icon">
+        <img src="images/exp.svg" alt="">
+      </span>
+      <span class="text">Experience 歷程&emsp;&emsp;</span>
     </a>
     <a href="#section3" class="nav-item">
-      <span>Redesigns 設計案例</span>
+      <span class="btn-icon">
+        <img src="images/case.svg" alt="">
+      </span>
+      <span class="text">Redesigns 設計案例&emsp;&emsp;</span>
     </a>
   </nav>
 
   <!-- 內容區 -->
   <main>
-    <section id="section1" class="section">Section 1</section>
-    <section id="section2" class="section">Section 2</section>
-    <section id="section3" class="section">Section 3</section>
+    <section id="section1" class="section intro">
+
+      <div class="intro-container">
+
+      <!-- 中間profile pic -->
+      <div class="profile">
+        <img src="images/profile-pic.JPG" class="intro-photo">
+      </div>
+
+      <!-- 最右文字區 -->
+      <div class="intro-content">
+        <h1 class="intro-title">Jasmine&ensp;徐名萱</h1>
+        <h2 class="intro-subtitle">Aspiring &emsp;UI&ensp;/&ensp;UX &emsp;Designer</h2>
+        <p class="intro-text">
+          具工業設計背景，現正轉向 UI/UX 領域，曾參與網站改版與介面優化，關注資訊架構與使用流程的整理。
+          擅長將複雜資訊轉化為直覺易懂的介面，降低使用者的認知負擔。
+        </p>
+        <p class="intro-mantra">
+          I design interfaces that simplify decisions and reduce cognitive load.
+        </p>
+        <div class="intro-skills">
+          <span>UI/UX</span>
+          <span>Figma</span>
+          <span>Wireframing</span>
+          <span>Prototyping</span>
+        </div>
+      </div>
+
+    </div>
+
+    </section>
+
+    <section id="section2" class="section experience">
+      <div class="experience-container">
+
+        <div class="experience-item">
+          <h2 class="experience-title">User-Centered Design Thinking</h2>
+          <p class="experience-subtitle">工業設計系</p>
+          <p class="experience-text">透過觀察與研究使用者需求，並在反覆的設計迭代中優化產品，
+讓最終方案更貼近實際使用情境與直覺操作。以使用者為核心的設計思維，並從問題定義、發想到驗證的完整設計流程。</p>
+        </div>
+
+        <div class="experience-item">
+          <h2 class="experience-title">Digital Product Design</h2>
+          <p class="experience-subtitle">Google Developer Student Club</p>
+          <p class="experience-text">在 GDSC 中開始接觸 UI/UX 設計，理解數位產品的基本架構與設計邏輯，包含資訊層級、使用流程與介面組織方式。並透過實作與討論，建立對使用者操作路徑與整體體驗的初步判斷能力。</p>
+        </div>
+
+        <div class="experience-item">
+          <h2 class="experience-title">Product Design in Practice</h2>
+          <p class="experience-subtitle">設計行銷助理</p>
+          <p class="experience-text">在實務工作中參與公司網站改版，針對既有介面進行分析，
+重新梳理資訊架構與操作流程，減少重複功能並提升導覽清晰度。並在與工程協作的過程中，逐步理解設計與前後端實作之間的限制與平衡。</p>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="section3" class="section redesigns">
+      <div class="redesigns-container">
+
+        <a href="case-website.html" class="project-card">
+          <img src="./images/website-cover.png" alt="ASG" class="project-cover">
+
+          <div class="project-info">
+            <h2 class="project-title">網站改版設計</h2>
+            <p class="project-subtitle">Web Redesign / UIUX</p>
+            <p class="project-text">重新梳理網站資訊架構與導覽邏輯，減少重複入口並提升使用者在瀏覽與操作上的清晰度。</p>
+            <span class="project-link">View Case Study →</span>
+          </div>
+        </a>
+
+        <a href="case-app.html" class="project-card">
+          <img src="./images/app-cover.png" alt="sushiro" class="project-cover">
+
+          <div class="project-info">
+            <h2 class="project-title">壽司郎App體驗優化</h2>
+            <p class="project-subtitle">Mobile App / UX Improvement</p>
+            <p class="project-text">針對行動裝置使用情境，優化預約流程與操作動線，降低使用過程中的認知負擔與操作摩擦。</p>
+            <span class="project-link">View Case Study →</span>
+          </div>
+        </a>
+
+      </div>
+    </section>
+
   </main>
 
   <script src="script.js"></script>
+
+  <script>
+  const navItems = document.querySelectorAll('.nav-item');
+
+  navItems.forEach(item => {
+    item.addEventListener('click', () => {
+      navItems.forEach(btn => btn.classList.remove('active'));
+      item.classList.add('active');
+    });
+  });
+
+  const sections = document.querySelectorAll('section[id]');
+
+  window.addEventListener('scroll', () => {
+    let currentId = '';
+
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop;
+      const sectionHeight = section.offsetHeight;
+
+      if (window.scrollY >= sectionTop - sectionHeight / 3) {
+        currentId = section.getAttribute('id');
+      }
+    });
+
+    navItems.forEach(item => {
+      item.classList.remove('active');
+
+      if (item.getAttribute('href') === `#${currentId}`) {
+        item.classList.add('active');
+      }
+    });
+  });
+</script>
+
 </body>
 
 

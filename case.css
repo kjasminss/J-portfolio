@@ -1,0 +1,165 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body.case-page {
+  margin: 0;
+  font-family: sans-serif;
+  background: #fff;
+  color: #000;
+}
+
+
+/* nav */
+
+.case-nav {
+  position: fixed;
+  left: 50px;
+  top: 80px;
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 36px;
+}
+
+.home-pill,
+.to-top {
+  background: rgb(138, 206, 0);
+  backdrop-filter: blur(10px);
+  color: #000000;
+  text-decoration: none;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+.home-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 18px;
+  border-radius: 999px;
+  font-size: 14px;
+}
+.home-pill:hover {
+  transform: scale(1.2);
+}
+
+.case-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.case-menu a {
+  position: relative;
+  width: fit-content;
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+  font-size: 14px;
+  opacity: 0.65;
+  transition: opacity 0.3s ease;
+}
+.case-menu a:hover {
+  opacity: 1;
+}
+.case-menu a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 100%;
+  height: 1.5px;
+  background: rgb(0, 0, 0);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+.case-menu a:hover::after {
+  transform: scaleX(1);
+}
+
+
+
+/* content */
+
+.case-main {
+  padding-left: clamp(220px, 22vw, 360px);
+  padding-right: clamp(32px, 8vw, 140px);
+}
+.case-section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+
+
+/* back to top */
+
+.to-top {
+  position: fixed;
+  left: 50px;
+  bottom: 100px;
+  z-index: 999;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(12px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.to-top.show {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+.to-top:hover {
+  transform: translateY(0) scale(1.2);
+}
+
+
+
+/* mobile */
+
+@media (max-width: 768px) {
+
+  .case-nav {
+    left: 24px;
+    top: 24px;
+  }
+  .home-pill {
+    padding: 8px 16px;
+    font-size: 12px;
+  }
+  .case-main {
+    padding: 0 24px;
+  }
+  .case-section {
+    justify-content: center;
+    text-align: center;
+  }
+  .case-menu {
+  display: none;
+  }
+
+  .to-top {
+    left: 50%;
+    right: auto;
+    bottom: 30px;
+    transform: translate(-50%, 12px);
+  }
+  .to-top.show {
+    transform: translate(-50%, 0);
+  }
+  .to-top:hover {
+    transform: translate(-50%, 0) scale(1.1);
+  }
+
+}

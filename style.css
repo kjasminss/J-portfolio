@@ -1,82 +1,387 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
-  font-family: sans-serif;
+  font-family: Helvetica;
 }
 
-/* 左側導航 */
+/* 按鈕 */
+
 .side-nav {
   position: fixed;
-  left: 50px;
-  top: 50%;
+  left: 80px;
+  top: 80px;
   transform: translateY(-50%);
   display: flex;
-  flex-direction: column;
-  gap: 16px;
+  flex-direction: row;
+  gap: 40px;
+  z-index: 100; /* 🔥 比線高就好 */
 }
-
-/* 按鈕（可以之後換成星星） */
 .nav-item {
   display: inline-flex;
   align-items: center;
-
-  padding: 10px 18px;   /* 讓它變長條 */
-  border-radius: 999px; /* 膠囊形 */
-
-  background: rgba(255, 255, 255, 0.3); /* 半透明 */
-  backdrop-filter: blur(10px); /* 毛玻璃（很加分） */
-
+  padding: 5px 12px; 
+  border-radius: 999px; 
+  background: rgba(255, 255, 255, 0.1); 
+  backdrop-filter: blur(10px); /* 毛玻璃 */
+  border: 1px solid rgba(0, 0, 0, 0.5); 
   color: #000;
   text-decoration: none;
   font-size: 14px;
-
   transition: all 0.3s ease;
 }
 .nav-item span {
   opacity: 0.6;
 }
-
 .nav-item.active span {
   opacity: 1;
 }
-
-/* hover */
+.btn-icon img {
+  width: 30px; /* 控制 icon 大小 */
+  height: 30px; /* 固定比例 */
+  display: block; /* 避免底部多空隙 */
+}
 .nav-item:hover {
   transform: scale(1.1);
   background: rgba(255, 255, 255, 0.2);
 }
-
-/* 當前區塊 */
 .nav-item.active {
-  transform: scale(1.3);
-  background: rgba(255, 149, 0, 0.8);
+  transform: scale(1.2);
+  background: rgba(138, 206, 0);
+  border-color: rgba(0, 0, 0, 0.9);
 }
 
-/* 內容區塊 */
-.section {
-  height: 100vh;
+#section1 { background: #ffffff; }
+#section2 { background: rgb(231, 231, 231); }
+#section3 { background: #ffffff; }
+
+
+
+/* 手機版按鈕 */
+
+@media (max-width: 768px) {
+
+  .side-nav { /* 按鈕外層容器 */
+    position: fixed; /* 固定在畫面上 */
+    top: 25px; /* 距離上方 */
+    left: 50%; /* 水平置中基準 */
+    transform: translateX(-50%); /* 真正置中 */
+    display: flex; /* 橫排 */
+    flex-direction: row; /* 水平排列 */
+    justify-content: center; /* 置中排列 */
+    gap: 10px;
+    width: calc(100% - 32px); /* 🔥 不超出 viewport */
+    max-width: 300px; /* 🔥 限制最大寬 */
+  }
+  .nav-item {
+    width: 44px; /* 🔥 固定寬 */
+    height: 44px; /* 🔥 固定高（=寬 才是正圓） */
+    padding: 0; /* 🔥 一定要0，不然變橢圓 */
+    border-radius: 50%; /* 🔥 正圓 */
+    overflow: hidden; /* 🔥 把右邊文字切掉 */
+    display: flex;
+    justify-content: flex-start; /* 🔥 靠左 */
+    flex-shrink: 0; /* 🔥 不被壓扁 */
+    gap: 20px;
+  }
+  .nav-icon {
+    width: 18px; /* icon 寬度 */
+    height: 18px; /* icon 高度 */
+    display: block;
+  }
+  .nav-item.active {
+    width: auto; /* 展開成膠囊 */
+    padding: 0 10px; /* 展開後左右留白 */
+    border-radius: 999px; /* 展開後膠囊圓角 */
+    gap: 8px; /* icon 和文字距離 */
+  }
+  .nav-item:not(.active) img {
+    transform: translateX(6.5px) translateY(0px) !important;
+  }
+}
+  /* 第一顆 active：拉開它和第二顆 */
+  .nav-item:nth-child(1).active {
+    margin-left: 20px;
+  }
+  .nav-item:nth-child(1).active + .nav-item {
+    margin-left: 20px;
+    margin-right: 1px;
+  }
+  /* 第二顆 active：左右都拉開 */
+  .nav-item:nth-child(2).active {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+  /* 第三顆 active：拉開第二顆和第三顆 */
+  .nav-item:nth-child(2):has(+ .nav-item:nth-child(3).active) {
+    margin-right: 20px;
+  }
+  .nav-item:nth-child(3).active {
+    margin-right: 20px;
+}
+
+
+
+/* ===== Section 1 ===== */
+
+.intro {
+  display: flex; /* 讓裡面可以置中 */
+  justify-content: center; /* 水平置中整個 container */
+  padding: 150px 80px 150px; /* 上下100 左右20 */
+}
+.intro-container {
+  width: 100%;
+  max-width: 1200px; /* 最大寬 */
+  margin: 0 auto; /* 🔥 左右永遠一樣 */
+  padding: 0 20px; /* 🔥 小螢幕左右留白 */
   display: flex;
   align-items: center;
-  justify-content: center;
-  font-size: 40px;
+  gap: clamp(24px, 5vw, 64px);
+}
+.intro-content {
+  flex: 1; /* 吃剩餘空間 */
+  min-width: 0; /* 防止爆版 */
+  text-align: left;
 }
 
-#section1 { background: #f5f5f5; }
-#section2 { background: #ddd; }
-#section3 { background: #bbb; }
+.intro::after {
+  content: "";
+  position: fixed; /* 🔥 讓它固定在畫面 */
+  left: 0;
+  top: 0px; /* ← 你按鈕那條的高度自己調 */
+  width: 100%;
+  height: 200px; /* 橫條高度 */
+  z-index: 50;
+  pointer-events: none; /* 不擋點擊 */
+  -webkit-backdrop-filter: blur(100px);
+  /* 🔥 關鍵：往下漸層消失 */
+  mask-image: linear-gradient(
+    to bottom,
+    rgba(0,0,0,1) 0%,
+    rgba(0,0,0,0.6) 60%,
+    rgba(0,0,0,0) 100%
+  );
+}
+
+/* 大標 */
+.intro-title {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+/* 照片 */
+.intro-photo {
+  width: 180px;
+  height: 240px;
+  object-fit: cover;
+  border-radius: 0%;
+  display: block;
+}
+/* 小標 */
+.intro-subtitle {
+  font-size: 16px;
+  opacity: 0.6;
+  margin-bottom: 24px;
+}
+/* 內文 */
+.intro-text {
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+/* mantra */
+.intro-mantra {
+  font-size: 14px;
+  font-style: italic;
+  margin-bottom: 48px;
+}
+/* 技能 */
+.intro-skills {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+.intro-skills span {
+  font-size: 12px;
+  padding: 6px 10px;
+  border: 1px solid #000;
+  border-radius: 999px;
+}
 
 
-/* 手機版 */
+
+/* ===== Section 2 ===== */
+
+.experience {
+  padding-top: 150px;   /* 上固定 */
+  padding-bottom: 150px; /* 下固定 */
+  padding-left: 100px;   /* 左固定最小 */
+  padding-right: 100px;  /* 右固定最小 */
+  display: flex;
+  justify-content: flex-start; /* 🔥 整塊置中 */
+}
+.experience-container {
+  width: 100%;
+  max-width: 1200px; /* 跟 intro 對齊 */
+  margin: 0 auto; /* 🔥 左右等比例 */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* 🔥 靠左（不要 flex-end） */
+  gap: 48px;
+  text-align: left;
+}
+.experience-title {
+  font-size: 28px;
+  margin: 0 0 8px;
+}
+.experience-subtitle {
+  font-size: 14px;
+  opacity: 0.55;
+  margin: 0 0 16px;
+}
+.experience-text {
+  font-size: 14px;
+  line-height: 1.8;
+  margin: 0;
+}
+
+
+
+/* ===== Section 3 ===== */
+
+.redesigns {
+  padding-top: 150px; 
+  padding-bottom: 200px; 
+  padding-left: 100px; 
+  padding-right: 100px; 
+  display: flex;
+  justify-content: center; /* 🔥 真的置中 */
+  align-items: center;
+}
+.redesigns-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto; /* 🔥 左右置中關鍵 */
+  display: flex;
+  gap: 80px;
+}
+.project-card {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(40px, 6vw, 96px);
+  color: #000;
+  text-decoration: none;
+}
+.project-cover {
+  flex: 0 1 58%;
+  min-width: 0;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  transition: all 0.3s ease;
+  box-shadow: 
+    0 15px 30px rgba(0, 0, 0, 0.15),
+    0 10px 20px rgba(0, 0, 0, 0.2);
+}
+.project-cover:hover {
+  transform: translateY(-6px);
+  box-shadow: 
+    0 15px 30px rgba(0, 0, 0, 0.1),
+    0 10px 20px rgba(0, 0, 0, 0.15);
+}
+.project-info {
+  flex: 0 1 42%;
+  min-width: 0;
+  text-align: left;
+}
+
+/* 文字 */
+.project-title {
+  font-size: 28px;
+  margin: 0 0 8px;
+}
+.project-subtitle {
+  font-size: 14px;
+  opacity: 0.55;
+  margin: 0 0 16px;
+}
+.project-text {
+  font-size: 14px;
+  line-height: 1.7;
+  margin: 0 0 18px;
+}
+.project-link {
+  font-size: 13px;
+  opacity: 0.75;
+}
+.project-card:hover .project-cover {
+  transform: scale(1.02);
+}
+.project-cover {
+  transition: transform 0.3s ease;
+}
+.project-link {
+  position: relative;
+  display: inline-block;
+}
+
+/* 底線 */
+.project-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 0;
+  height: 1.5px;
+  background: #000;
+  transition: width 0.3s ease;
+}
+/* hover 動畫 */
+.project-link:hover::after {
+  width: 100%;
+}
+
+
+
+
+
+
+
+/* ===== 手機版內容 ===== */
+
 @media (max-width: 768px) {
-  .side-nav {
-    left: 50%;
-    bottom: 20px;
-    top: auto;
-    transform: translateX(-50%);
-    flex-direction: row;
+
+  .intro {
+    padding: 120px 20px 80px;
+  }
+  .intro-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .intro-skills {
+    justify-content: left;
   }
 
-  .nav-item {
-    padding: 8px 12px;
-    font-size: 12px;
+  .experience {
+    padding: 80px 40px 80px ;
   }
+
+  .redesigns {
+      padding: 80px 40px 180px ;
+    }
+  .redesigns-container {
+    flex-direction: column;
+    gap: 70px;
+  }
+  .project-card {
+    width: 100%;
+    gap: 50px;
+  }
+
 }
+

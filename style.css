@@ -22,7 +22,8 @@ body {
 .nav-item {
   display: inline-flex;
   align-items: center;
-  padding: 5px 12px; 
+  padding: 5px 18px 5px 12px; 
+  gap: 10px;
   border-radius: 999px; 
   background: rgba(255, 255, 255, 0.1); 
   backdrop-filter: blur(10px); /* 毛玻璃 */
@@ -93,7 +94,7 @@ body {
   }
   .nav-item.active {
     width: auto; /* 展開成膠囊 */
-    padding: 0 10px; /* 展開後左右留白 */
+    padding: 10px 18px 10px 12px; /* 展開後左右留白 */
     border-radius: 999px; /* 展開後膠囊圓角 */
     gap: 8px; /* icon 和文字距離 */
   }

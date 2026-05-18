@@ -94,7 +94,7 @@ body {
   }
   .nav-item.active {
     width: auto; /* 展開成膠囊 */
-    padding: 10px 10px 10px 12px; /* 展開後左右留白 */
+    padding: 10px 15px 10px 12px; /* 展開後左右留白 */
     border-radius: 999px; /* 展開後膠囊圓角 */
     gap: 8px; /* icon 和文字距離 */
   }

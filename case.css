@@ -79,10 +79,10 @@ body.case-page {
   transform: scaleX(1);
 }
 .case-menu a.active {
-  opacity: 1; /* /* active 狀態時亮一點 */ */
+  opacity: 1;  /* active 狀態時亮一點 */ 
 }
 .case-menu a.active::after {
-  transform: scaleX(1); /* /* 強制顯示底線（跟 hover 一樣效果） */ */
+  transform: scaleX(1);  /* 強制顯示底線（跟 hover 一樣效果） */ 
 }
 
 
@@ -226,7 +226,13 @@ body.case-page {
   font-size: 13px;
   line-height: 2;
   color: #222;
-  margin-bottom: 28px;
+  margin-bottom: 15px;
+}
+.case-text-add {
+  font-size: 10px;
+  line-height: 2;
+  color: #B52A34;
+  margin-bottom: 0px;
 }
 
 .hero-image,
@@ -284,6 +290,15 @@ body.case-page {
 .reveal.is-visible {
   opacity: 1; /* 顯示 */
   transform: translateY(0); /* 回原位 */
+}
+
+.persona-group {
+  display: flex;
+  gap: 30px; /* 兩張圖間距 */
+}
+.persona-group .content-image {
+  width: 48%;
+  border-radius: 12px; /* 可有可無 */
 }
 
 .pill-btn {
@@ -407,6 +422,14 @@ body.case-page {
   } 
   .goal-text{
     text-align:center;
+  }
+
+  .persona-group {
+    flex-direction: column;
+    gap: 20px; /* 兩張圖間距 */
+  }
+  .persona-group .content-image {
+    width: 100%;
   }
 
 }
